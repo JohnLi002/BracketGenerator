@@ -1,6 +1,7 @@
 package com.example.bracket;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class BracketSystem {
     public ArrayList<String> WinnerBracket = new ArrayList<String>();
@@ -16,7 +17,6 @@ public class BracketSystem {
     public void addWinner(String s){
         WinnerBracket.add(s);
     }
-
 
     public void removeWinners(String s){
         WinnerBracket.remove(s);
@@ -36,6 +36,21 @@ public class BracketSystem {
         }
     }
 
+    public void shuffleWinners(){
+        ArrayList<String> replace = new ArrayList<String>();
+        int i;
+        while(!WinnerBracket.isEmpty()){
+            i = (int) (Math.random()*WinnerBracket.size());
+            replace.add(WinnerBracket.get(i));
+            WinnerBracket.remove(i);
+        }
+        WinnerBracket = replace;
+    }
+
+    public void shuffleLosers(){
+        Collections.shuffle(LoserBracket);
+    }
+
     public void removeLosers(String s){
         LoserBracket.remove(s);
     }
@@ -46,5 +61,11 @@ public class BracketSystem {
 
     public String[] getLosers(){
         return (String[]) LoserBracket.toArray();
+    }
+
+    public void playerLoss(String s){
+        int i = WinnerBracket.indexOf(s);
+        LoserBracket.add(WinnerBracket.get(i));
+        WinnerBracket.remove(i);
     }
 }

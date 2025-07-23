@@ -8,8 +8,8 @@ public class Main {
         Console con = System.console();
         
         addWinner(con, b);
-        addWinner(con, b);
-        b.printAllWinners();
+        b.playerLoss(con.readLine());
+        b.printAllLosers();
     }
 
     public static void addWinner(Console con, BracketSystem b){
@@ -22,4 +22,5 @@ public class Main {
             b.addWinner(s);
         }
     }
+
 }
